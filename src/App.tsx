@@ -1,34 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import { SearchBar } from "./components/SearchBar";
+import { WeatherCard } from "./components/WeatherdCard";
+import { getWeather } from "./services/weatherAPI";
+import type { WeatherData } from "./types";
+import { LoadingSkeleton } from "./components/LoadingSkeleton";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [weather, setWeather] = useState<WeatherData | null>(null)
+  const [error, setError] = useState<string>('')
+  const [isLoading, setIsLoading] = useState(false)
+
+  const handleSearch = async (city: string) => {
+    try {
+      setIsLoading(true);
+      setError('')
+      const data = await getWeather(city)
+      setWeather(data)
+    }
+    catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred');
+      setWeather(null);
+    }
+    finally {
+      setIsLoading(false)
+    }
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="bg-neutral-950 min-h-screen bg-gray-100 flex items-center justify-center px-4">
+      <div className="w-lg bg-neutral-800 shadow-lg rounded-lg p-6 space-y-6">
+        <h1 className="text-3xl text-neutral-300 font-bold text-center mb-8">
+          Weatheer Dashboard
+        </h1>
+
+        <SearchBar onSearch={handleSearch} isLoading={isLoading} />
+
+        {isLoading && <LoadingSkeleton />}
+        {!isLoading && weather && <WeatherCard data={weather} />}
+        {!isLoading && error && (
+          <div className="p-4 bg-red-100 text-red-700 rounded-lg">
+            {error}
+          </div>
+        )}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }
 
