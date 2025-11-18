@@ -7,19 +7,19 @@ interface WeatherCardProps {
 export function WeatherCard({ data }: WeatherCardProps) {
     return (
         <div className="bg-neutral-800 border-2 border-neutral-300 rounded-xl p-6">
-            <div className="flex justify-between items-center mb-4">
+            <div className="flex justify-between items-center">
                 <h2 className="text-2xl text-neutral-300 font-bold">{data.name}</h2>
                 <img 
                   src={`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
                   alt={data.weather[0].description}
-                  className="w-16 h-16"
+                  className="w-19 h-19"
                 />
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <p className="text-4xl text-neutral-300 font-bold">{Math.round(data.main.temp)}</p>
-                  <p className="text-neutral-300">{data.weather[0].main}</p>
+            <div className="flex">
+                  <div className="w-[30%]">
+                    <p className="text-4xl text-neutral-300 font-bold">{Math.round(data.main.temp)}</p>
+                    <p className="text-neutral-300">{data.weather[0].main}</p>
                 </div>
 
                 <div className="space-y-2">
@@ -32,7 +32,10 @@ export function WeatherCard({ data }: WeatherCardProps) {
                   <p className="text-neutral-300">
                     Wind: {data.wind.speed} m/s
                   </p>
+                  <p className="text-neutral-300">Coordinates: {data.coord.lat} {data.coord.lon}</p>
+                  <p className="text-neutral-300">Time Zone: {data.timezone}</p>
                 </div>
+
             </div>
         </div>
     )
