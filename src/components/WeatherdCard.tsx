@@ -32,8 +32,12 @@ export function WeatherCard({ data }: WeatherCardProps) {
                   <p className="text-neutral-300">
                     Wind: {data.wind.speed} m/s
                   </p>
-                  <p className="text-neutral-300">Coordinates: {data.coord.lat} {data.coord.lon}</p>
-                  <p className="text-neutral-300">Time Zone: {data.timezone}</p>
+                  <p className="text-neutral-300">
+                    Coordinates: {data.coord.lat} {data.coord.lon}
+                  </p>
+                  <p className="text-neutral-300">
+                    Time Zone: {data.timezone}
+                  </p>
                 </div>
 
             </div>
