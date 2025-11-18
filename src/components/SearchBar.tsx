@@ -13,6 +13,7 @@ export function SearchBar({ onSearch, isLoading }: SearchBarProprs) {
         if(city.trim()) {
             onSearch(city);
         }
+        setCity('')
     };
 
     return (
