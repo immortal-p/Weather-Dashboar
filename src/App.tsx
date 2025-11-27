@@ -27,7 +27,7 @@ const App = () => {
   }
 
   return (
-    <div className="bg-neutral-950 min-h-screen bg-gray-100 flex items-center justify-center px-4">
+    <div className="bg-neutral-950 min-h-screen flex items-center justify-center px-4">
       <div className="w-lg bg-neutral-800 shadow-lg rounded-lg p-6 space-y-6">
         <h1 className="text-3xl text-neutral-300 font-bold text-center mb-8">
           Weatheer Dashboard
@@ -38,7 +38,7 @@ const App = () => {
         {isLoading && <LoadingSkeleton />}
         {!isLoading && weather && <WeatherCard data={weather} />}
         {!isLoading && error && (
-          <div className="p-4 bg-red-100 text-red-700 rounded-lg">
+          <div className="p-2 mb-2 text-red-400 animate-1 rounded-lg border-2">
             {error}
           </div>
         )}
