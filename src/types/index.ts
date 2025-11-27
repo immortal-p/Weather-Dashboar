@@ -1,9 +1,4 @@
 export interface WeatherData {
-    coord: {
-        lon: number;
-        lat: number;
-    };
-    timezone: string;
     main: {
         temp: number;
         feels_like: number;

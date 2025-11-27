@@ -6,7 +6,7 @@ interface WeatherCardProps {
 
 export function WeatherCard({ data }: WeatherCardProps) {
     return (
-        <div className="bg-neutral-800 border-2 border-neutral-300 rounded-xl p-6">
+        <div className="bg-neutral-800 border-2 transition duration-300 border-neutral-300 rounded-xl cursor-pointer p-6 hover:border-indigo-500">
             <div className="flex justify-between items-center">
                 <h2 className="text-2xl text-neutral-300 font-bold">{data.name}</h2>
                 <img 
@@ -31,12 +31,6 @@ export function WeatherCard({ data }: WeatherCardProps) {
                   </p>
                   <p className="text-neutral-300">
                     Wind: {data.wind.speed} m/s
-                  </p>
-                  <p className="text-neutral-300">
-                    Coordinates: {data.coord.lat} {data.coord.lon}
-                  </p>
-                  <p className="text-neutral-300">
-                    Time Zone: {data.timezone}
                   </p>
                 </div>
 
